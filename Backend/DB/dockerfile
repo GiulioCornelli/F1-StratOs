@@ -1,12 +1,17 @@
 FROM mongo:7.0
 
+LABEL maintainer="team F1-StratOs"
+LABEL version="1.0"
+LABEL description="Istanza MongoDB ottimizzata per microservizi"
+
+
 # Usiamo i nomi standard richiesti dall'immagine ufficiale di Mongo.
 # Docker cercherà queste variabili nell'ambiente a runtime.
 ENV MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
 ENV MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
 ENV MONGO_INITDB_DATABASE=${APP_DB_NAME}
 
-COPY init-db.js /docker-entrypoint-initdb.d/
+COPY ./script/config-mongo.js /docker-entrypoint-initdb.d/
 
 # Esposizione porta
 EXPOSE 27017
