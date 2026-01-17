@@ -3,16 +3,16 @@ from fastapi import APIRouter ,HTTPException, status
 from typing import Optional
 
 # librerie custom
-from database.repositories.driverRepository import DriverRepository
-from database.models.driver import Driver
+from ..database.repositories.driverRepository import DriverRepository
+from ..database.models.driver import Driver
 
 
 
-router = APIRouter(prefix="/api/drivers" , tags=["drivers"])
+routerDriver = APIRouter(prefix="/api/drivers" , tags=["drivers"])
 
 
 
-@router.get("/get_driver_by_number", response_model=Driver)
+@routerDriver.get("/get_driver_by_number", response_model=Driver)
 async def get_driver_by_number(number : int)-> Driver:
     """
     Description:
