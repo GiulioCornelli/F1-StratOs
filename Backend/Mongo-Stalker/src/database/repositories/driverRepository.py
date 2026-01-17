@@ -7,7 +7,7 @@ class DriverRepository:
         self.db = MongoManager.get_db()
         self.collection = self.db["Drivers"]
     
-    def get_driver_by_id(self, driver_number: int) -> Optional[Driver]:
+    def get_driver_by_number(self, driver_number: int) -> Optional[Driver]:
         """
         summery:
             Funzione che permette di cercare nel db un driver, in base al suo numero

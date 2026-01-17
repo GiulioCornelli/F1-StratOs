@@ -1,6 +1,8 @@
 from pymongo import MongoClient
 import os 
 from dotenv import load_dotenv
+from requests.utils import requote_uri
+
 
 class MongoManager:
     _client = None
@@ -21,11 +23,12 @@ class MongoManager:
 
             if db_user and db_pwd:
                 url = f"mongodb://{db_user}:{db_pwd}@{ip_database}:{port_database}/"
-                print(f"Tentativo di connessione a: {url}")
+                parsurl = requote_uri(url)
+                print(f"Tentativo di connessione a: {parsurl}")
             else:
                 url = f"mongodb://{ip_database}:{port_database}/"
 
-            cls._client = MongoClient(url)
+            cls._client = MongoClient(parsurl)
         
         return cls._client
 
