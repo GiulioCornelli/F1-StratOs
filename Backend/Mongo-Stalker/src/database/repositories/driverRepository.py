@@ -9,7 +9,8 @@ class DriverRepository:
     
     def get_driver_by_number(self, driver_number: int) -> Optional[Driver]:
         """
-        summery:
+        Description:
+
             Funzione che permette di cercare nel db un driver, in base al suo numero
 
         Args:
@@ -30,7 +31,7 @@ class DriverRepository:
             
     def insert_driver(self, driver: Driver) -> bool:
         """
-        summary:
+        Description:
             inserisce un driver nel db
 
         Args:
