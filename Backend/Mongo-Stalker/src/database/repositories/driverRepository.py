@@ -1,6 +1,6 @@
 from typing import Optional
-from database.models.driver import Driver
-from database.database import MongoManager
+from ..models.driver import Driver
+from ..database import MongoManager
 
 class DriverRepository:
     def __init__(self):
