@@ -12,7 +12,7 @@ routerDriver = APIRouter(prefix="/api/drivers" , tags=["drivers"])
 
 
 
-@routerDriver.get("/get_driver_by_number", response_model=Driver)
+@routerDriver.get("/getDriverByNumber", response_model=Driver)
 async def get_driver_by_number(number : int)-> Driver:
     """
     Description:
@@ -30,12 +30,14 @@ async def get_driver_by_number(number : int)-> Driver:
         Driver: eventuali dati del pilota 
     """
     try:
-        data : Optional[Driver] = DriverRepository.get_driver_by_number(number)
+        repo = DriverRepository()
+        data : Optional[Driver] = repo.get_driver_by_number(number)
         if data is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail=f"Driver numero:{number} non trovato"
             )
+        return data
 
     except Exception as e:
         print(f"Errore interno: {e}") 
@@ -46,3 +48,29 @@ async def get_driver_by_number(number : int)-> Driver:
             detail="Si è verificato un errore interno nel server."
         )
         
+
+@routerDriver.get("/getAllDrivers", response_model=list[Driver])
+async def getall_drivers()-> list[Driver]:
+    """
+    Description:
+        Questa endpoint api permette di ottenere tutti i piloti presenti nel database
+
+    Raises:
+        HTTPException: 500 Problemi interni
+
+    Returns:
+        list[Driver]: lista di tutti i piloti
+    """
+    try:
+        repo = DriverRepository()
+        data : list[Driver] = repo.get_all_drivers()
+        return data
+
+    except Exception as e:
+        print(f"Errore interno: {e}") 
+        
+        # 500 Internal Server Error per errori imprevisti (es. database offline)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Si è verificato un errore interno nel server."
+        )

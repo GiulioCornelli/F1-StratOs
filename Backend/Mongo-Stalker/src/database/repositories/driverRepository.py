@@ -1,4 +1,7 @@
+#librerie esterne
 from typing import Optional
+
+# librerie custom 
 from ..models.driver import Driver
 from ..database import MongoManager
 
@@ -46,3 +49,17 @@ class DriverRepository:
         except Exception as e:
             print(f"Errore nell'inserimento del driver errore: {e}")
             return False
+        
+
+    def get_all_drivers(self)-> list[Driver]:
+        drivers = []
+        
+        try:
+            data = self.collection.find()
+            for item in data:
+                item.pop("_id", None)
+                drivers.append(Driver(**item))
+            return drivers
+        except Exception as e:
+            print(f"Errore nel recupero del driver errore: {e}")
+            return drivers

@@ -1,3 +1,4 @@
+#librerie esterne
 from pymongo import MongoClient
 import os 
 from dotenv import load_dotenv
@@ -10,6 +11,7 @@ class MongoManager:
     @classmethod
     def get_client(cls):
         """
+        Description:
             Crea il clinet per la connessione al DB
         Returns:
             _type_: MongoClient
@@ -27,6 +29,8 @@ class MongoManager:
                 print(f"Tentativo di connessione a: {parsurl}")
             else:
                 url = f"mongodb://{ip_database}:{port_database}/"
+                parsurl = requote_uri(url)
+                print(f"Tentativo di connessione a: {parsurl}")
 
             cls._client = MongoClient(parsurl)
         
