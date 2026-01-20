@@ -19,3 +19,4 @@ venv.bak/
 
 
 /Backend/DB/docker-compose.yml
+/Backend/*/tests
