@@ -31,6 +31,19 @@ class DriverRepository:
         except Exception as e:
             print(f"Errore nel recupero del driver errore: {e}")
             return None
+        
+    def get_all_drivers(self)-> list[Driver]:
+        drivers = []
+        
+        try:
+            data = self.collection.find()
+            for item in data:
+                item.pop("_id", None)
+                drivers.append(Driver(**item))
+            return drivers
+        except Exception as e:
+            print(f"Errore nel recupero del driver errore: {e}")
+            return drivers
             
     def insert_driver(self, driver: Driver) -> bool:
         """
@@ -51,15 +64,4 @@ class DriverRepository:
             return False
         
 
-    def get_all_drivers(self)-> list[Driver]:
-        drivers = []
-        
-        try:
-            data = self.collection.find()
-            for item in data:
-                item.pop("_id", None)
-                drivers.append(Driver(**item))
-            return drivers
-        except Exception as e:
-            print(f"Errore nel recupero del driver errore: {e}")
-            return drivers
+    

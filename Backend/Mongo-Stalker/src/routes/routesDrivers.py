@@ -10,7 +10,7 @@ from ..database.models.driver import Driver
 
 routerDriver = APIRouter(prefix="/api/drivers" , tags=["drivers"])
 
-
+repo = DriverRepository()#impoert della repository driver
 
 @routerDriver.get("/getDriverByNumber", response_model=Driver)
 async def get_driver_by_number(number : int)-> Driver:
@@ -30,7 +30,6 @@ async def get_driver_by_number(number : int)-> Driver:
         Driver: eventuali dati del pilota 
     """
     try:
-        repo = DriverRepository()
         data : Optional[Driver] = repo.get_driver_by_number(number)
         if data is None:
             raise HTTPException(
@@ -62,7 +61,6 @@ async def getall_drivers()-> list[Driver]:
         list[Driver]: lista di tutti i piloti
     """
     try:
-        repo = DriverRepository()
         data : list[Driver] = repo.get_all_drivers()
         return data
 
@@ -74,3 +72,19 @@ async def getall_drivers()-> list[Driver]:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Si è verificato un errore interno nel server."
         )
+    
+
+@routerDriver.post("/insertDriver", response_model=bool)
+async def isert_driver(driver: Driver)-> bool:
+    try:
+        result : bool = repo.insert_driver(driver)
+        return result
+    except Exception as e:
+        print(f"Errore interno: {e}") 
+        
+        # 500 Internal Server Error per errori imprevisti (es. database offline)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Si è verificato un errore interno nel server."
+        )
+        
