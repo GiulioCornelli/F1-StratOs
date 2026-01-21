@@ -31,6 +31,7 @@ async def get_driver_by_number(number : int)-> Driver:
     """
     try:
         data : Optional[Driver] = repo.get_driver_by_number(number)
+        print(data)
         if data is None:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
