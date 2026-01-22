@@ -13,6 +13,8 @@ routerDriver = APIRouter(prefix="/api/drivers" , tags=["drivers"])
 
 repo = DriverRepository()#impoert della repository driver
 
+
+## ------------Search Functions  -----------------
 @routerDriver.get("/getDriverByNumber", response_model=Driver)
 async def get_driver_by_number(number : int)-> Driver:
     """
@@ -76,11 +78,14 @@ async def getall_drivers()-> list[Driver]:
         )
     
 
+
+## ------------Insert Functions  -----------------
+
 @routerDriver.post("/insertDriver", response_model=bool)
 async def isert_driver(driver: Driver)-> bool:
     """
     Description 
-        Questa endpoint api permette di inserire un nuovo pilota nel database
+        Questo endpoint api permette di inserire un nuovo pilota nel database
     Args:
         driver (Driver): nuovo pilota da inserire
 
@@ -102,4 +107,85 @@ async def isert_driver(driver: Driver)-> bool:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Si è verificato un errore interno nel server."
         )
+
+@routerDriver.post("/insertManyDrivers", response_model=bool)
+async def insert_many_drivers(drivers: list[Driver]) -> bool:
+    """
+    Description:
+        Questo endpoint api permette di inserire una lista di piloti nel db
+
+    Args:
+        drivers (list[Driver]): lista di piloti da inserire
+
+    Raises:
+        HTTPException: nel caso di errori interni
+
+    Returns:
+        bool: conferma se la transazione è stata eseguita con successo
+    """
+    try:
+        result : bool = repo.insert_many_drivers(drivers)
+        return result
+    except Exception as e:
+        print(f"Errore interno: {e}") 
         
+        # 500 Internal Server Error per errori imprevisti (es. database offline)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Si è verificato un errore interno nel server."
+        )
+
+
+## ------------Delete Function  -----------------
+
+@routerDriver.delete("/deleteAllDrivers", response_model=bool)
+async def delete_all_drivers() -> bool:
+    """
+    Description
+        Questo endpoint api permette di eliminare tutti i piloti nel db
+
+    Raises:
+        HTTPException: in caso di errori interni
+
+    Returns:
+        bool: conferma se la transazione è stata eseguita con successo
+    """
+    try:
+        result : bool = repo.delete_all_drivers()
+        return result
+    except Exception as e:
+        print(f"Errore interno: {e}") 
+        
+        # 500 Internal Server Error per errori imprevisti (es. database offline)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Si è verificato un errore interno nel server."
+        )
+
+@routerDriver.delete("/deleteDriverByNumber", response_model=bool)
+async def delete_driver_by_number(number: int) -> bool:
+    """
+    Description:
+    
+    Questo endpoit api permette di eliminare un pilota dal suo numero in gara
+
+    Args:
+        number (int): numero del pilota
+
+    Raises:
+        HTTPException: nel caso di errori interni
+
+    Returns:
+        bool: confema se la transazione è stata eseguita con successo
+    """
+    try:
+        result : bool = repo.delete_driver_by_nuber(number)
+        return result
+    except Exception as e:
+        print(f"Errore interno: {e}") 
+        
+        # 500 Internal Server Error per errori imprevisti (es. database offline)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Si è verificato un errore interno nel server."
+        )
