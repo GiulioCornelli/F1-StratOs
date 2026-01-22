@@ -46,5 +46,10 @@ class MongoManager:
         client = cls.get_client()
         return client["f1stratos_db"]
     
-
+    @classmethod
+    def close_connection(cls):
+        """Chiude la connessione in modo sicuro."""
+        if cls._client is not None:
+            cls._client.close()
+            cls._client = None  
 
