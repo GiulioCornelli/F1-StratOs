@@ -26,7 +26,6 @@ class DriverRepository:
             data = self.collection.find_one({"driver_number": driver_number})
             if data:
                 data.pop("_id", None)
-                print("Rimozione _id:", data)
                 return Driver(**data)
             return None
         except Exception as e:

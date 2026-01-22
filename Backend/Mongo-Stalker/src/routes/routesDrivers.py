@@ -1,4 +1,5 @@
 #librerie esterne
+import re
 from fastapi import APIRouter ,HTTPException, status
 from typing import Optional
 
@@ -77,7 +78,20 @@ async def getall_drivers()-> list[Driver]:
 
 @routerDriver.post("/insertDriver", response_model=bool)
 async def isert_driver(driver: Driver)-> bool:
+    """
+    Description 
+        Questa endpoint api permette di inserire un nuovo pilota nel database
+    Args:
+        driver (Driver): nuovo pilota da inserire
+
+    Raises:
+        HTTPException: nel caso di errori interni
+
+    Returns:
+        bool: True se l'inserimento è avvenuto con successo
+    """
     try:
+        print(driver)
         result : bool = repo.insert_driver(driver)
         return result
     except Exception as e:
