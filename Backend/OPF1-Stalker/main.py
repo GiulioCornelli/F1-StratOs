@@ -1,6 +1,13 @@
-def main():
-    print("Hello from opf1-stalker!")
+#librerie esterne
+import uvicorn
 
+def main():
+    uvicorn.run(
+        "src.app:app",
+        host="0.0.0.0", 
+        port=8090, 
+        reload=True
+    )
 
 if __name__ == "__main__":
     main()
