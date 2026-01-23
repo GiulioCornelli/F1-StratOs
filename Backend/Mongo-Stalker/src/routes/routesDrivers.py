@@ -1,5 +1,4 @@
 #librerie esterne
-import re
 from fastapi import APIRouter ,HTTPException, status
 from typing import Optional
 
