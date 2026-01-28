@@ -1,5 +1,4 @@
 #librerie esterne
-from re import M
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 
