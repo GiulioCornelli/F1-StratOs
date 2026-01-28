@@ -1,19 +1,7 @@
 # F1-StratOs
 Progetto per la fruizione di dati sulla Formula Uno
-ciao
-
-## Mapping delle Porte
-# 🛰️ Service Infrastructure & API Mapping
-
-Benvenuto nella documentazione tecnica del networking del progetto. Questo file serve come riferimento rapido per la mappatura delle porte e la struttura degli endpoint API.
 
 ---
-
-## 🛠️ Architettura dei Servizi
-
-Il sistema è composto da tre microservizi principali che comunicano tra loro. Il **Gateway** funge da punto di ingresso unico per le chiamate esterne.
-
-
 
 ### 🔌 Mappatura delle Porte
 
@@ -23,10 +11,41 @@ Il sistema è composto da tre microservizi principali che comunicano tra loro. I
 | **Mongo-Stalker** | `8080` | HTTP | Gestione database. |
 | **OPF1-Stalker** | `8090` | HTTP | Logica di business specifica i dati della f1. |
 
+---
 
 
-#### Esempi di Rotte Comuni:
-* **List Drivers:** `GET /api/drivers`
-* **Driver Details:** `GET /api/drivers/:id`
-* **Update Driver:** `PUT /api/drivers/:id`
 
+### Rotte:
+## 🗄️ Mongo-Stalker
+*Gestione della persistenza e del database dei piloti.*
+
+| Metodo | Endpoint | Descrizione |
+| :--- | :--- | :--- |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getDriverByNumber` | Recupera un pilota tramite numero di gara. |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getAllDrivers` | Recupera la lista completa dei piloti. |
+| ![POST](https://img.shields.io/badge/POST-green?style=flat-square) | `insertDriver` | Inserisce un nuovo pilota nel sistema. |
+| ![POST](https://img.shields.io/badge/POST-green?style=flat-square) | `insertManyDrivers` | Inserimento bulk di più piloti. |
+| ![DELETE](https://img.shields.io/badge/DELETE-red?style=flat-square) | `deleteDriverByNumber` | Elimina un pilota specifico. |
+| ![DELETE](https://img.shields.io/badge/DELETE-red?style=flat-square) | `deleteAllDrivers` | **Attenzione:** Svuota l'intera collezione. |
+
+
+
+## 🏎️ OPF1-Stalker
+*Servizio dedicato alla logica di business e telemetria.*
+
+| Metodo | Endpoint | Descrizione |
+| :--- | :--- | :--- |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getDriverByNumber` | Recupera dati pilota elaborati da OPF1. |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getAllDrivers` | Recupera tutti i piloti processati. |
+
+
+
+## 🚪 Gateway
+*Punto di accesso unico per i client esterni (Porta 8070).*
+
+| Metodo | Endpoint | Descrizione |
+| :--- | :--- | :--- |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getDriverByNumber` | Proxy verso il recupero pilota. |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getAllDrivers` | Proxy verso la lista totale piloti. |
+
+---
