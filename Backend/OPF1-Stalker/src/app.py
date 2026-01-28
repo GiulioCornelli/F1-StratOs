@@ -14,6 +14,7 @@ from rich.progress import Progress, SpinnerColumn, TextColumn
 
 # librerie custom
 from .routes import routerDriver, routerMeeting
+from src.logo import OPF1_STALKER_BANNER,F1_STRATOS_EXIT,BOLD, RESET, GREEN
 
 
 console = Console()
@@ -95,6 +96,8 @@ async def Update_Driver():
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    print(OPF1_STALKER_BANNER)
+    print(f"{BOLD}{GREEN}Inizializzazione Lifespan...{RESET}")
     scheduler = AsyncIOScheduler(timezone="Europe/Rome")
 
     scheduler.add_job(
@@ -108,8 +111,10 @@ async def lifespan(app: FastAPI):
     )
     
     scheduler.start()
-    print("Scheduler avviato...")
+    print(f"{BOLD}{GREEN}Scheduler avviato...{RESET}")
     yield
+    print(F1_STRATOS_EXIT)
+
     scheduler.shutdown()
     print("Scheduler spento.")
 
