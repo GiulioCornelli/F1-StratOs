@@ -15,37 +15,32 @@ Progetto per la fruizione di dati sulla Formula Uno
 
 
 
-### Rotte:
-## 🗄️ Mongo-Stalker
-*Gestione della persistenza e del database dei piloti.*
+## Rotte:
 
-| Metodo | Endpoint | Descrizione |
-| :--- | :--- | :--- |
-| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getDriverByNumber` | Recupera un pilota tramite numero di gara. |
-| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getAllDrivers` | Recupera la lista completa dei piloti. |
-| ![POST](https://img.shields.io/badge/POST-green?style=flat-square) | `insertDriver` | Inserisce un nuovo pilota nel sistema. |
-| ![POST](https://img.shields.io/badge/POST-green?style=flat-square) | `insertManyDrivers` | Inserimento bulk di più piloti. |
-| ![DELETE](https://img.shields.io/badge/DELETE-red?style=flat-square) | `deleteDriverByNumber` | Elimina un pilota specifico. |
-| ![DELETE](https://img.shields.io/badge/DELETE-red?style=flat-square) | `deleteAllDrivers` | **Attenzione:** Svuota l'intera collezione. |
-
-
-
-## 🏎️ OPF1-Stalker
-*Servizio dedicato alla logica di business e telemetria.*
-
-| Metodo | Endpoint | Descrizione |
-| :--- | :--- | :--- |
-| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getDriverByNumber` | Recupera dati pilota elaborati da OPF1. |
-| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getAllDrivers` | Recupera tutti i piloti processati. |
+### 🗄️ Mongo-Stalker (Port: 8080)
+| Metodo | Prefisso | Endpoint | Descrizione |
+| :--- | :--- | :--- | :--- |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `/api/drivers` | `getDriverByNumber` | Recupera un pilota tramite il suo numero di gara. |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `/api/drivers` | `getAllDrivers` | Recupera tutti i piloti. |
+| ![POST](https://img.shields.io/badge/POST-green?style=flat-square) | `/api/drivers` | `insertDriver` | Inserisce un nuovo pilota. |
+| ![POST](https://img.shields.io/badge/POST-green?style=flat-square) | `/api/drivers` | `insertManyDrivers` | Inserisce più piloti contemporaneamente. |
+| ![DELETE](https://img.shields.io/badge/DELETE-red?style=flat-square) | `/api/drivers` | `deleteDriverByNumber` | Elimina un pilota tramite il suo numero. |
+| ![DELETE](https://img.shields.io/badge/DELETE-red?style=flat-square) | `/api/drivers` | `deleteAllDrivers` | Elimina l'intero database piloti. |
 
 
 
-## 🚪 Gateway
-*Punto di accesso unico per i client esterni (Porta 8070).*
+### 🏎️ OPF1-Stalker (Port: 8090)
+| Metodo | Prefisso | Endpoint | Descrizione |
+| :--- | :--- | :--- | :--- |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `/api/drivers` | `getDriverByNumber` | Recupera un pilota tramite il suo numero di gara. |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `/api/drivers` | `getAllDrivers` | Recupera tutti i piloti. |
 
-| Metodo | Endpoint | Descrizione |
-| :--- | :--- | :--- |
-| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getDriverByNumber` | Proxy verso il recupero pilota. |
-| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `getAllDrivers` | Proxy verso la lista totale piloti. |
+
+
+### 🚪 Gateway (Port: 8070)
+| Metodo | Prefisso | Endpoint | Descrizione |
+| :--- | :--- | :--- | :--- |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `/api/drivers` | `getDriverByNumber` | Routing verso il recupero pilota. |
+| ![GET](https://img.shields.io/badge/GET-blue?style=flat-square) | `/api/drivers` | `getAllDrivers` | Routing verso il recupero totale piloti. |
 
 ---
