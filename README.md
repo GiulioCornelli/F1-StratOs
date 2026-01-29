@@ -3,13 +3,15 @@ Progetto per la fruizione di dati sulla Formula Uno
 
 ---
 
-### 🔌 Mappatura delle Porte
+## 🔌 Mappatura delle Porte
 
 | Servizio | Porta | Protocollo | Descrizione |
 | :--- | :---: | :---: | :--- |
 | **Gateway** | `8070` | HTTP | Entry point per il frontend |
 | **Mongo-Stalker** | `8080` | HTTP | Gestione database. |
 | **OPF1-Stalker** | `8090` | HTTP | Logica di business specifica i dati della f1. |
+
+
 
 ---
 
