@@ -17,7 +17,7 @@ Progetto per la fruizione di dati sulla Formula Uno
 
 
 
-## Rotte:
+## Rotte Beckend:
 
 ### 🗄️ Mongo-Stalker (Port: 8080)
 | Metodo | Prefisso | Endpoint | Descrizione |
