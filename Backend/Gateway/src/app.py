@@ -7,8 +7,8 @@ from contextlib import asynccontextmanager
 
 
 # librerie custom
-from .routes import routerDriver, routerMeeting
-from src.logo import GATEWAY_BANNER,F1_STRATOS_EXIT,BOLD, RESET, GREEN
+from .routes import routerDriver
+from src.logo import GATEWAY_BANNER,F1_STRATOS_EXIT
 
 
 
