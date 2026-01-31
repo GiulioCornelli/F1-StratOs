@@ -9,11 +9,18 @@ const Navbar = () => {
 
   return (
     // Navbar glassmorphism: sfondo semitrasparente + sfocatura + bordo sottile
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 bg-f1-card-a60/50 backdrop-blur-md border border-white/10 rounded-full px-8 py-4 flex justify-between items-center shadow-glass">
-     
-      <Link to="/" className="text-2xl font-black text-white italic tracking-tighter drop-shadow-md">
-        F1-<span className="text-f1-red">StratOS</span>
-      </Link>
+    <nav className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50 bg-f1-card-a60/50 backdrop-blur-md border border-white/10 rounded-full px-8 py-4 flex justify-between items-center shadow-glass">     
+      {
+        isAuthenticated ? (
+          <Link to="/home" className="text-2xl font-black text-white italic tracking-tighter drop-shadow-md">
+            F1-<span className="text-f1-red">StratOS</span>
+          </Link>
+        ) : (
+          <Link to="/" className="text-2xl font-black text-white italic tracking-tighter drop-shadow-md">
+            F1-<span className="text-f1-red">StratOS</span>
+          </Link>
+        )
+      }
       <div>
         {isAuthenticated ? (
           <button 
