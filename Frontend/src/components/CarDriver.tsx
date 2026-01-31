@@ -23,11 +23,19 @@ function CarDriver({driver}: Props) {
         {/* Container Immagine Smussato */}
         <div className="relative">
           <div className="w-28 h-28 rounded-liquid overflow-hidden border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-1">
-            <img 
-              src={driver.headshot_url} 
-              alt={driver.full_name} 
-              className="w-full h-full object-cover rounded-[3.5rem]" 
-            />
+            {
+                driver.headshot_url ? (
+                    <img 
+                        src={driver.headshot_url} 
+                        alt={driver.full_name} 
+                        className="w-full h-full object-cover rounded-[3.5rem]" 
+                    />
+                ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-f1-red  flex items-center justify-center">
+                        <span className="text-white text-4xl font-black italic">{driver.name_acronym}</span>
+                    </div>
+                )
+            }
           </div>
           {/* Badge Numero Pilota */}
           <div className="absolute -bottom-2 -right-1 bg-f1-red text-white text-xs font-black italic px-3 py-1 rounded-full shadow-lg border border-white/20">
