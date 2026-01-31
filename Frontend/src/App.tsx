@@ -1,8 +1,11 @@
 // src/App.tsx
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate, Outlet } from 'react-router-dom';
+
+// librerie custom
 import Root from './pages/Root';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import Drivers from './pages/Drivers';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const router = createBrowserRouter([
@@ -18,9 +21,14 @@ const router = createBrowserRouter([
     path: '/home',
     element: (
       <ProtectedRoute>
-        <Home />
+        <Outlet /> 
       </ProtectedRoute>
     ),
+    children: [
+      { index: true, element: <Home /> },        // URL: /home (Dashboard principale)
+      { path: 'drivers', element: <Drivers /> }, // URL: /home/drivers
+      
+    ],
   },
   {
     path: '*',
