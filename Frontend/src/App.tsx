@@ -1,15 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// src/App.tsx
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import Root from './pages/Root';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import ProtectedRoute from './components/ProtectedRoute';
 
-function App() {
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />, // Pagina di presentazione
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
+    path: '/home',
+    element: (
+      <ProtectedRoute>
+        <Home />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '*',
+    element: <Navigate to="/" replace />, // Fallback per rotte inesistenti
+  },
+]);
 
-  return (
-    <>
-      
-    </>
-  )
+export default function App() {
+  return <RouterProvider router={router} />;
 }
-
-export default App

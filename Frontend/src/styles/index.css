@@ -1,0 +1,47 @@
+/* src/styles/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-f1-red: #E10600;
+  --color-f1-red-a50: rgba(225, 6, 0, 0.5);
+  --color-f1-dark: #0b0b0b;
+  --color-f1-dark-a80: rgba(11, 11, 11, 0.8);
+  --color-f1-card: #15151E;
+  --color-f1-card-a60: rgba(21, 21, 30, 0.60);
+
+  --radius-4xl: 2.5rem;
+  --radius-liquid: 4rem;
+
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --shadow-glass-hover: 0 8px 32px 0 rgba(225, 6, 0, 0.30);
+  --shadow-inner-light: inset 0 2px 4px 0 rgba(255, 255, 255, 0.1);
+
+  --blur-xs: 2px;
+}
+
+/* Importiamo i nostri stili personalizzati */
+@import './glassmorphism.css';
+
+@layer base {
+  body {
+    /* Usiamo un gradiente scuro profondo come base per far risaltare il vetro */
+    @apply bg-gradient-to-br from-f1-dark via-[#0a0a12] to-[#1a0f0f] text-white antialiased min-h-screen font-sans selection:bg-f1-red/30;
+    font-family: 'Montserrat', sans-serif;
+    /* Font più moderno e sportivo */
+  }
+
+  /* Scrollbar personalizzata */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-f1-dark;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-f1-red/50 rounded-full hover:bg-f1-red;
+  }
+}

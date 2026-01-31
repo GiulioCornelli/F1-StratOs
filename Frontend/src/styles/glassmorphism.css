@@ -1,0 +1,48 @@
+/* src/styles/glassmorphism.css */
+
+@layer components {
+  /* * Base per qualsiasi pannello "Vetro Scuro".
+   * Combina sfocatura, colore semitrasparente, bordo sottile e ombra.
+   */
+  .glass-panel {
+    @apply bg-f1-card-a60 backdrop-blur-xl border border-white/10 shadow-glass rounded-4xl;
+  }
+
+  /* * Variante più chiara per elementi in primo piano o hover
+   */
+  .glass-panel-light {
+    @apply bg-white/5 backdrop-blur-lg border border-white/20 shadow-glass rounded-liquid;
+  }
+
+  /* * Input fields stile vetro
+   */
+  .glass-input {
+    @apply w-full bg-white/5 border border-white/10 text-white p-4 rounded-2xl focus:ring-2 focus:ring-f1-red/50 focus:border-f1-red/50 focus:bg-white/10 focus:outline-none transition-all duration-300 shadow-inner-light placeholder:text-gray-500;
+  }
+
+  /* * Bottone "Liquido" principale (Rosso F1)
+   * Aggiunge un effetto bagliore interno e un'ombra colorata all'hover
+   */
+  .btn-liquid-primary {
+    @apply bg-f1-red text-white font-bold py-4 px-10 rounded-full transition-all duration-300 uppercase tracking-widest shadow-lg hover:shadow-glass-hover hover:bg-f1-red/90 border-t border-white/20 relative overflow-hidden;
+  }
+  
+  /* Effetto lucido interno al bottone */
+  .btn-liquid-primary::before {
+      content: '';
+      @apply absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent opacity-50 rounded-t-full pointer-events-none;
+  }
+
+  /* * Bottone secondario/Navbar
+   */
+  .btn-glass-ghost {
+     @apply bg-white/10 hover:bg-f1-red/20 text-white font-bold px-6 py-2 rounded-full border border-white/5 backdrop-blur-md transition-all uppercase text-sm hover:shadow-glass-hover hover:border-f1-red/30;
+  }
+}
+
+@layer utilities {
+  /* Utility per creare blob di colore sfocato sullo sfondo per enfatizzare il vetro */
+  .liquid-blob {
+    @apply absolute rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse;
+  }
+}
