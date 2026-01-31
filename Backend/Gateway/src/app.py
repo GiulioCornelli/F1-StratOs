@@ -3,7 +3,8 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 # import httpx
 # from httpx import ConnectTimeout, ReadTimeout
-# import asyncio
+# import asyncio  
+from fastapi.middleware.cors import CORSMiddleware
 
 
 # librerie custom
@@ -23,6 +24,14 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"], # L'URL del tuo Frontend
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # --- Rotte ---
 app.include_router(routerDriver)
