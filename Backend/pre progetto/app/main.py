@@ -73,8 +73,11 @@ def login_stalker(credentials: schemas.AdminLogin, db: Session = Depends(get_db)
     return {
         "message": "Login effettuato con successo",
         "id_utente": user.id_utente,
-        "nome": user.nome
+        "nome": user.nome,
+        "isAutenticathed": True
+        
     }
+
 
 @app.post("/init-privileges")
 def init_privileges(db: Session = Depends(get_db)):

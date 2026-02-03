@@ -1,5 +1,5 @@
 
-const API_URL = ""; // Lascia vuoto se il frontend è servito dallo stesso server
+const API_URL = ""; //frontend è servito dallo stesso server
 
 function showForm(type) {
     const loginForm = document.getElementById('login-form');
