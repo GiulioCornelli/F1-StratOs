@@ -1,6 +1,6 @@
-
 import os
-from sqlalchemy import create_engine
+import sys
+from sqlalchemy import create_engine, text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -18,3 +18,17 @@ def get_db():
         yield db
     finally:
         db.close()
+
+def test_connection():
+    print(f"Testing connection to: {DATABASE_URL}...")
+    try:
+        with engine.connect() as connection:
+            result = connection.execute(text("SELECT 1"))
+            print("Connection successful!", result.scalar())
+        return 0
+    except Exception as e:
+        print(f"Connection failed: {e}")
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(test_connection())
