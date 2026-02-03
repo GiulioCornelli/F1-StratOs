@@ -1,0 +1,37 @@
+INFO:     Will watch for changes in these directories: ['/home/jj/Documents/sviluppo/F1-StratOs/Backend/Gateway']
+INFO:     Uvicorn running on http://localhost:8070 (Press CTRL+C to quit)
+INFO:     Started reloader process [15677] using StatReload
+INFO:     Started server process [15680]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+[94m[1m
+   ______ ______ ______ ______ _       __ ___    __  __
+  / ____// __  //_  __// ____/| |     / //   |  / / / /
+ / / __ / /_/ /  / /  / __/   | | /| / // /| | / /_/ / 
+/ /_/ // /_/ /  / /  / /___   | |/ |/ // ___ |/_____/  
+\____//_/ /_/  /_/  /_____/   |__/|__//_/  |_| /_/   
+                                                         
+[0m[96m
+              >>> Developed by F1-StratOs Team <<<
+[0m
+INFO:     127.0.0.1:54546 - "OPTIONS /api/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54546 - "POST /api/auth/login HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:55132 - "POST /api/auth/login HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:37892 - "OPTIONS /api/auth/register HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37892 - "POST /api/auth/register HTTP/1.1" 201 Created
+INFO:     127.0.0.1:37892 - "POST /api/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37892 - "GET /api/drivers/getAllDrivers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37892 - "GET /api/drivers/getAllDrivers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:40910 - "GET /api/drivers/getAllDrivers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38364 - "GET /api/drivers/getAllDrivers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37330 - "POST /api/auth/register HTTP/1.1" 500 Internal Server Error
+INFO:     127.0.0.1:37332 - "POST /api/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37332 - "GET /api/drivers/getAllDrivers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:37332 - "GET /api/drivers/getAllDrivers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52956 - "GET /api/drivers/getAllDrivers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45574 - "GET /api/drivers/getAllDrivers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41606 - "OPTIONS /api/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41606 - "POST /api/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41606 - "GET /api/drivers/getAllDrivers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:41606 - "GET /api/drivers/getAllDrivers HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49494 - "POST /api/auth/login HTTP/1.1" 500 Internal Server Error

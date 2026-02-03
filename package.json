@@ -1,0 +1,12 @@
+{
+    "name": "f1-stratos-root",
+    "version": "1.0.0",
+    "description": "F1-StratOs Project Hub",
+    "scripts": {
+        "start": "./start_all.sh",
+        "clean": "rm *.log && cd Backend/postgres-Stalker_au && docker-compose down",
+        "test:build": "cd Frontend && npm run build"
+    },
+    "author": "Antigravity",
+    "license": "ISC"
+}

@@ -8,7 +8,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 # librerie custom
-from .routes import routerDriver
+from .routes.routesDriver import routerDriver
+from .routes.routesAuth import routerAuth
 from src.logo import GATEWAY_BANNER,F1_STRATOS_EXIT
 
 
@@ -35,3 +36,4 @@ app.add_middleware(
 
 # --- Rotte ---
 app.include_router(routerDriver)
+app.include_router(routerAuth)

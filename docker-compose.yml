@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: f1stratos_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Jj00
+      POSTGRES_DB: f1stratos
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mongo:
+    build: 
+      context: ./Backend/DB
+      dockerfile: dockerfile
+    container_name: f1stratos_mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+      - APP_DB_NAME=f1stratos_db
+      - APP_USER=user
+      - APP_PASSWORD=password
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  postgres_data:
+  mongo_data:
