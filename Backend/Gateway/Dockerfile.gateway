@@ -1,0 +1,30 @@
+#stage 1: build
+FROM python:3.12 AS builder 
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+#stge 2: prod
+FROM python:3.12-slim 
+
+LABEL maintainer="Team F1-StratOs"
+LABEL version="1.0.0"
+LABEL description="Gateway Image Production, this is the gateway towards the frontend"
+
+RUN useradd -r -u 999 -m pythonuser 
+
+WORKDIR /app
+COPY --from=builder /install /usr/local
+
+COPY --chown=pythonuser:pythonuser . .
+
+EXPOSE 8070
+
+USER pythonuser
+
+CMD ["python", "main.py"]
+
+

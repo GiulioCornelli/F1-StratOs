@@ -3,7 +3,7 @@ import uvicorn
 def main():
     uvicorn.run(
         "src.app:app",
-        host="localhost",
+        host="0.0.0.0",
         port=8070,
         reload=True
     )
