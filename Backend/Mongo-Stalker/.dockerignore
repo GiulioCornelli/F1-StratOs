@@ -1,0 +1,16 @@
+#ambiente 
+.git
+.gitignore
+.venv
+.env
+.vscode
+tests/ 
+README.md
+
+
+#python
+
+**/__pycache__
+.python-version
+pyproject.toml
+uv.lock
