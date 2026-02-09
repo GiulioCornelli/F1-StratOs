@@ -1,0 +1,33 @@
+#stage 1: build
+FROM python:3.12 AS builder 
+
+#indica la cartella dove andra a lavorare
+WORKDIR /app
+
+COPY requirements.txt .
+
+#installa le dipendenze da requirements.txt
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+#stge 2: prod
+FROM python:3.12-slim 
+
+LABEL maintainer="Team F1-StratOs"
+LABEL version="1.0.0"
+LABEL description="OPF1-Stalker Image Production"
+
+# crea un account non privilegiato
+RUN useradd -r -u 999 -m pythonuser 
+
+WORKDIR /app
+
+#copia le dipendenze installate da builder, nella cartella local così tutti gli utenti possono usarle
+COPY --from=builder /install /usr/local
+
+COPY --chown=pythonuser:pythonuser . .
+
+EXPOSE 8090
+
+USER pythonuser
+
+CMD ["python", "main.py"]
