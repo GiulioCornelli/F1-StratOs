@@ -28,7 +28,7 @@ class MongoManager:
                 parsurl = requote_uri(url)
                 print(f"Tentativo di connessione a: {parsurl}")
             else:
-                url = f"mongodb://{ip_database}:{port_database}/"
+                url = f"mongodb://{ip_database}:{port_database}/f1stratos_db?authSource=f1stratos_db"
                 parsurl = requote_uri(url)
                 print(f"Tentativo di connessione a: {parsurl}")
 
