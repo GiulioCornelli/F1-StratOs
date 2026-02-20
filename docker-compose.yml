@@ -1,27 +1,44 @@
 services:
-  db:
-    image: postgres:15
-    container_name: f1stratos_db
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Jj00
-      POSTGRES_DB: f1stratos
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-  f1-db:
+  mongodb:
     build:
-      context: .
-      args:
-        - STALKER_USER=${STALKER_USER}
-        - STALKER_PWD=${STALKER_PWD}
-    container_name: f1_mongodb
+      context: ./Backend/DB
+      dockerfile: Dockerfile.mongo
+    image: f1stratos-mongodb:1.0.0
+    container_name: f1stratos_mongodb
     ports:
       - "27017:27017"
+    env_file:
+      - .env
+    environment:
+      - MONGO_INITDB_ROimage: f1stratos-db:1.0.0OT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
+      - MONGO_INITDB_DATABASE=${F1_DB_NAME}
     volumes:
-      - /home/db/mongo_data2:/data/db
-volumes:
-  postgres_data:
-  mongo_data:
+      - /home/db/mongo-data:/data/db
+    networks:
+      - f1stratos-network
+
+  mongo-stalker:
+    build:
+      context: ./Backend/Mongo-Stalker
+      dockerfile: Dockerfile.mongostalker
+    image: mongo-stalker:1.0.0
+    container_name: f1stratos_mongo-stalker
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - F1_APP_USER=${F1_APP_USER}
+      - F1_APP_PASSWORD=${F1_APP_PASSWORD}
+      - IP_DATABASE_MD=${IP_DATABASE_MD}
+      - PORT_DATABASE_MD=${PORT_DATABASE_MD}
+    depends_on:
+      - mongodb
+    networks:
+      - f1stratos-network
+
+networks:
+  f1stratos-network:
+    driver: bridge
+

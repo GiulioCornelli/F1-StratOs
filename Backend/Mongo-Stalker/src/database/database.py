@@ -18,13 +18,13 @@ class MongoManager:
         """
         if cls._client is None:
             load_dotenv()
-            db_user = os.getenv("APP_USER")
-            db_pwd = os.getenv("APP_PASSWORD")
-            ip_database = os.getenv("IP_DATABASE")
-            port_database = os.getenv("PORT_DATABASE")
+            db_user = os.getenv("F1_APP_USER")
+            db_pwd = os.getenv("F1_APP_PASSWORD")
+            ip_database = os.getenv("IP_DATABASE_MD")
+            port_database = os.getenv("PORT_DATABASE_MD")
 
             if db_user and db_pwd:
-                url = f"mongodb://{db_user}:{db_pwd}@{ip_database}:{port_database}/"
+                url = f"mongodb://{db_user}:{db_pwd}@{ip_database}:{port_database}/f1stratos_db?authSource=f1stratos_db"
                 parsurl = requote_uri(url)
                 print(f"Tentativo di connessione a: {parsurl}")
             else:
