@@ -11,22 +11,17 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  mongo:
-    build: 
-      context: ./Backend/DB
-      dockerfile: dockerfile
-    container_name: f1stratos_mongo
+  f1-db:
+    build:
+      context: .
+      args:
+        - STALKER_USER=${STALKER_USER}
+        - STALKER_PWD=${STALKER_PWD}
+    container_name: f1_mongodb
     ports:
       - "27017:27017"
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
-      - APP_DB_NAME=f1stratos_db
-      - APP_USER=user
-      - APP_PASSWORD=password
     volumes:
-      - mongo_data:/data/db
-
+      - /home/db/mongo_data2:/data/db
 volumes:
   postgres_data:
   mongo_data:

@@ -5,9 +5,8 @@ LABEL version="1.0"
 LABEL description="Istanza MongoDB ottimizzata per microservizi"
 
 
-COPY ./script/config-mongo.js /docker-entrypoint-initdb.d/
+COPY init-db.js /docker-entrypoint-initdb.d/
 
-# Esposizione porta
 EXPOSE 27017
 
 # Volume per persistenza dati
