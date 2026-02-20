@@ -1,73 +1,39 @@
-# React + TypeScript + Vite
+# Frontend F1StratOs
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descrizione del Servizio
 
-Currently, two official plugins are available:
+Il **Frontend F1StratOs** è l'interfaccia utente principale dell'applicazione F1StratOs. È un'applicazione web moderna costruita con **React**, **TypeScript** e **Vite** che fornisce l'accesso ai dati e alle funzionalità del sistema di gestione dei dati Formula 1.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Funzionalità Principali
 
-## React Compiler
+- **Autenticazione**: Sistema di login sicuro per accedere alle funzionalità protette
+- **Gestione Driver**: Visualizzazione e ricerca dei driver F1 con relativi dettagli
+- **Dashboard**: Pagina home con panoramica generale del sistema
+- **Interfaccia Glassmorphism**: Design moderno e minimalista con effetto glassmorphism
+- **Gestione dello Stato**: Utilizzo di Redux per la gestione centralizzata dello stato (autenticazione, dati utente, ecc.)
+- **Routing Protetto**: Percorsi che richiedono l'autenticazione dell'utente
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Stack Tecnologico
 
-## Expanding the ESLint configuration
+- **React** + **TypeScript**: Per la costruzione di componenti tipizzati e robusti
+- **Vite**: Build tool veloce e moderno per lo sviluppo
+- **Redux**: Gestione dello stato globale dell'applicazione
+- **CSS Glassmorphism**: Stili moderni e sofisticati
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Struttura del Progetto
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- `src/pages/`: Pagine principali dell'applicazione (Login, Home, Drivers, ecc.)
+- `src/components/`: Componenti riutilizzabili (Navbar, Card, CarDriver, ecc.)
+- `src/store/`: Configuration Redux e slices
+- `src/styles/`: Fogli di stile globali e del tema
+- `src/types/`: Definizioni TypeScript per i tipi di dati
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installazione e Avvio
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+L'applicazione si avvierà su `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
