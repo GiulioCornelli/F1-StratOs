@@ -1,3 +1,4 @@
+name: f1-stratos-stack
 services:
   mongodb:
     build:
@@ -10,7 +11,7 @@ services:
     env_file:
       - .env
     environment:
-      - MONGO_INITDB_ROimage: f1stratos-db:1.0.0OT_USERNAME=${MONGO_ROOT_USER}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USER}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD}
       - MONGO_INITDB_DATABASE=${F1_DB_NAME}
     volumes:
